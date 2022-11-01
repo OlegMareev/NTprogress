@@ -1,0 +1,13 @@
+# ninja log v5
+1	745	6889884334044641	Server_autogen/timestamp	556aa1e3d2bf08cb
+1	745	6889884334044641	Server_autogen/mocs_compilation.cpp	556aa1e3d2bf08cb
+1	745	6889884334044641	C:/GitHub/NTprogress/Server/release/Server_autogen/timestamp	556aa1e3d2bf08cb
+1	745	6889884334044641	C:/GitHub/NTprogress/Server/release/Server_autogen/mocs_compilation.cpp	556aa1e3d2bf08cb
+762	2346	6889884351311390	CMakeFiles/Server.dir/client.cpp.obj	142cd9211573791
+750	2350	6889884351321389	CMakeFiles/Server.dir/main.cpp.obj	cf2e9eca87076f56
+748	2466	6889884352491639	CMakeFiles/Server.dir/order.cpp.obj	b2a54b5a169652e8
+746	2579	6889884353651904	CMakeFiles/Server.dir/Server_autogen/mocs_compilation.cpp.obj	1a52e6100a931392
+758	2757	6889884355412298	CMakeFiles/Server.dir/historyordersdb.cpp.obj	60a4732b8a918ab
+753	2758	6889884355422312	CMakeFiles/Server.dir/server.cpp.obj	7f11df32bca9fd0e
+755	2846	6889884356312640	CMakeFiles/Server.dir/tradingfloor.cpp.obj	c5d750ffd75adb11
+2847	2942	6889884357247296	Server.exe	39d867606e5d407f

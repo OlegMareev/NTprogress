@@ -22,7 +22,7 @@ private:
 private slots:
     void incomingConnection(qintptr socketDescriptor) override;
     void readyRead();
-    void disconnect();
+    void clientDisconnected();
     void orderUpdate();
 };
 

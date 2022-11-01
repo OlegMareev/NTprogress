@@ -13,13 +13,11 @@ Server::Server()
 
 Client *Server::getClient(QTcpSocket *clientSocket)
 {
-    Client *c = nullptr;
-    for(int i =0;i<clients.size();i++){
-        if(clients[i]->socket == clientSocket){
-            c = clients[i];
-            return c;
-        }
-    }
+    auto it = std::find_if(clients.begin(),clients.end(),
+                           [clientSocket](Client *c){return c->socket == clientSocket;});
+    if(it != clients.end())
+        return *it;
+
     qDebug()<<"getClient error";
     return nullptr;
 }
@@ -77,12 +75,9 @@ void Server::sendAnswer(QString str, QTcpSocket *clientSocket)
 
 void Server::sendToClient(QString str,QTcpSocket*clientSocket)
 {
-
-
     QByteArray sendText;
     sendText.clear();
     QDataStream outputData(&sendText,QIODevice::WriteOnly);
-    //inputData.setVersion(QDataStream::Version::Qt_6_4);
     outputData<<quint16(0)<<str;
     outputData.device()->seek(0);
     outputData<<quint16(sendText.size()- sizeof(quint16));
@@ -102,7 +97,7 @@ void Server::incomingConnection(qintptr socketDescriptor)
     socketPtr->setSocketDescriptor(socketDescriptor);
     connect(socketPtr,&QTcpSocket::readyRead,this,&Server::readyRead);
     connect(socketPtr,&QTcpSocket::disconnected,socketPtr,&QTcpSocket::deleteLater);
-    connect(socketPtr,&QTcpSocket::disconnected,this,&Server::disconnect);
+    connect(socketPtr,&QTcpSocket::disconnected,this,&Server::clientDisconnected);
 
     Client *newClient = new Client;
     newClient->socket = socketPtr;
@@ -116,7 +111,6 @@ void Server::readyRead()
 {
     socketPtr = (QTcpSocket*)sender();
     QDataStream inputData(socketPtr);
-    //inputData.setVersion(QDataStream::Version::Qt_6_4);
     if(inputData.status() == QDataStream::Ok){
         for(;;){
             if(blockSize == 0){
@@ -138,19 +132,16 @@ void Server::readyRead()
     }
 }
 
-void Server::disconnect()
+void Server::clientDisconnected()
 {
     socketPtr = (QTcpSocket*)sender();
-    int size = clients.size();
-    for(int i =0;i<size;i++){
-        if(clients[i]->socket == socketPtr){
-            qDebug()<<"Client"<<clients[i]->getName() <<" disconnected";
-            clients.remove(i);
-            size--;
-            i--;
-        }
+    auto it = std::find_if(clients.begin(),clients.end(),
+                           [this](Client *c){return c->socket == socketPtr;});
+    if(it != clients.end()){
+        qDebug()<<"Client"<<(*it)->getName() <<" disconnected";
+        delete *it;
+        clients.erase(it);
     }
-
 }
 
 void Server::orderUpdate()

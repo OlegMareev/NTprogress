@@ -12,7 +12,6 @@ QT_END_NAMESPACE
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
-
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
@@ -21,7 +20,6 @@ private slots:
     void updateLog();
     void updateBalance();
     void updateName();
-
 
     void on_connectWithServerBtn_clicked();
     void on_sendBtn_clicked();

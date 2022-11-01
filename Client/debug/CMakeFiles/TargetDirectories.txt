@@ -1,0 +1,9 @@
+C:/GitHub/NTprogress/Client/debug/CMakeFiles/Client.dir
+C:/GitHub/NTprogress/Client/debug/CMakeFiles/edit_cache.dir
+C:/GitHub/NTprogress/Client/debug/CMakeFiles/rebuild_cache.dir
+C:/GitHub/NTprogress/Client/debug/CMakeFiles/list_install_components.dir
+C:/GitHub/NTprogress/Client/debug/CMakeFiles/install.dir
+C:/GitHub/NTprogress/Client/debug/CMakeFiles/install/local.dir
+C:/GitHub/NTprogress/Client/debug/CMakeFiles/install/strip.dir
+C:/GitHub/NTprogress/Client/debug/CMakeFiles/Client_autogen_timestamp_deps.dir
+C:/GitHub/NTprogress/Client/debug/CMakeFiles/Client_autogen.dir

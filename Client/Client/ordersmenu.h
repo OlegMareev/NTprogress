@@ -10,8 +10,6 @@ class OrdersMenu;
 class OrdersMenu : public QWidget
 {
     Q_OBJECT
-
-
 private:
     QString act;
     Client*client;
@@ -21,17 +19,11 @@ public:
 
 private slots:
     void on_sellRBtn_clicked();
-
     void on_buyRBtn_clicked();
-
     void on_createOrderBtn_clicked();
-
     void on_allActiveBtn_clicked();
-
     void on_myActiveBtn_clicked();
-
     void on_allHistoryBtn_clicked();
-
     void on_myHistoryBtn_clicked();
 
 private:

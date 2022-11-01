@@ -50,7 +50,5 @@ QString Order::getOrder(){
     rubStr.setNum(rub);
     rubStr.append(" RUB");
 
-
-
     return timeStr+ clientName + actStr + usdStr + rubStr + activeStr;
 }

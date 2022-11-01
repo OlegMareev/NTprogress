@@ -1,0 +1,9 @@
+C:/GitHub/NTprogress/Server/release/CMakeFiles/Server.dir
+C:/GitHub/NTprogress/Server/release/CMakeFiles/edit_cache.dir
+C:/GitHub/NTprogress/Server/release/CMakeFiles/rebuild_cache.dir
+C:/GitHub/NTprogress/Server/release/CMakeFiles/list_install_components.dir
+C:/GitHub/NTprogress/Server/release/CMakeFiles/install.dir
+C:/GitHub/NTprogress/Server/release/CMakeFiles/install/local.dir
+C:/GitHub/NTprogress/Server/release/CMakeFiles/install/strip.dir
+C:/GitHub/NTprogress/Server/release/CMakeFiles/Server_autogen_timestamp_deps.dir
+C:/GitHub/NTprogress/Server/release/CMakeFiles/Server_autogen.dir

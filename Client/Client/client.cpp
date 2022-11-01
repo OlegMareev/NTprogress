@@ -24,7 +24,6 @@ void Client::sendMessage(QString str)
     QByteArray sendText;
     sendText.clear();
     QDataStream outputData(&sendText,QIODevice::WriteOnly);
-    //inputData.setVersion(QDataStream::Version::Qt_6_4);
     outputData<<quint16(0)<<str;
     outputData.device()->seek(0);
     outputData<<quint16(sendText.size()- sizeof(quint16));
@@ -34,7 +33,6 @@ void Client::sendMessage(QString str)
 void Client::readMessage()
 {
     QDataStream inputData(socket);
-    //inputData.setVersion(QDataStream::Version::Qt_6_4);
     if(inputData.status() == QDataStream::Ok){
         for(;;){
             if(blockSize == 0){
