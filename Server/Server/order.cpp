@@ -24,8 +24,18 @@ Order::Order(Client *client, QString newOrderStr){
     this->rub = rubAndUsd.toInt();
     if(this->rub == 0)
         this->rub = this->usd;
-    this->active = true;
     this->usdDeal = this->usd;
+}
+
+Order::Order(Client *client,Act act,quint32 usd,quint32 rub)
+{
+    this->client = client;
+    this->act = act;
+    this->usd = usd;
+    this->rub = rub;
+
+    this->time = QTime::currentTime();
+    usdDeal = usd;
 }
 
 QString Order::getOrder(){

@@ -8,7 +8,7 @@
 class TradingFloor: public QObject
 {
     Q_OBJECT
-    HistoryOrdersDB historyOrdersDB;
+    HistoryOrdersDB *historyOrdersDB;
     QVector<Order*> activeOrders;
 public:
     TradingFloor();
@@ -19,6 +19,7 @@ public:
     QString getHistoryOrders();
     QString getHistoryClintOrders(Client *client);
     Order *updatedOrder;
+    void deleteHistory();;
 signals:
     void orderUpdate();
 };

@@ -67,3 +67,8 @@ void HistoryOrdersDB::insertOrder(Order *order)
     orderDB.rub = order->getRub();
     insertOrderDB(orderDB);
 }
+
+void HistoryOrdersDB::deleteAll()
+{
+    query->exec("DROP TABLE OrdersHistory ");
+}

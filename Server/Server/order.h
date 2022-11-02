@@ -20,10 +20,12 @@ private:
     Act act;
     quint32 usd;
     quint32 rub;
-    bool active;
 public:
     Order() = delete;
     Order(Client *client,QString newOrderStr);
+    Order(Client *client,Act act,
+          quint32 usd,quint32 rub);
+
     Client *getClient(){return client;}
     QString getOrder();
     Act getAct(){return act;}

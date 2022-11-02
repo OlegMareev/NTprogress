@@ -15,7 +15,7 @@ find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Core)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Core)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Network)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Sql)
-
+find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Test)
 
 add_executable(Server
   main.cpp
@@ -24,10 +24,13 @@ add_executable(Server
   client.h client.cpp
   tradingfloor.h tradingfloor.cpp
   historyordersdb.h historyordersdb.cpp
+
+  testing_tradingfloor.h testing_tradingfloor.cpp
 )
 target_link_libraries(Server Qt${QT_VERSION_MAJOR}::Core)
 target_link_libraries(Server Qt${QT_VERSION_MAJOR}::Network)
 target_link_libraries(Server Qt${QT_VERSION_MAJOR}::Sql)
+target_link_libraries(Server Qt${QT_VERSION_MAJOR}::Test)
 
 install(TARGETS Server
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR})

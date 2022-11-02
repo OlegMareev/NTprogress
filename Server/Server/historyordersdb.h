@@ -33,6 +33,7 @@ public:
     QVector<OrderDB> clientOrdersDB(QString name);
     QVector<OrderDB> allOrdersDB();
     void insertOrder(Order *order);
+    void deleteAll();
 };
 
 #endif // HISTORYORDERSDB_H

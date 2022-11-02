@@ -10,6 +10,8 @@ private:
     int balance = 0;
     QString name = "";
 public:
+    Client();;
+    Client(QString name);
     QTcpSocket *socket;
 
     void addBalance(int value);

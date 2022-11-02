@@ -1,5 +1,9 @@
 #include "client.h"
 
+Client::Client(){}
+
+Client::Client(QString name){this->name = name;}
+
 void Client::addBalance(int value)
 {
     balance += value;

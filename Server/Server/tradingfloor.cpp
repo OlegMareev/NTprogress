@@ -3,7 +3,7 @@
 
 TradingFloor::TradingFloor()
 {
-
+    historyOrdersDB = new HistoryOrdersDB;
 }
 
 void TradingFloor::addOrder(Order *newOrder)
@@ -34,7 +34,7 @@ QString TradingFloor::getHistoryOrders()
 {
     QString str = "\rHistory orders = \r";
 
-    QVector<OrderDB> allOrdersDB = historyOrdersDB.allOrdersDB();
+    QVector<OrderDB> allOrdersDB = historyOrdersDB->allOrdersDB();
     if(allOrdersDB.size() == 0){
         str = "No history orders";
         return str;
@@ -50,7 +50,7 @@ QString TradingFloor::getHistoryClintOrders(Client *client)
 {
     QString historyClientOrders = "\r"+client->getName() + " history orders = \r";
 
-    QVector<OrderDB> clientOrdersDB = historyOrdersDB.clientOrdersDB(client->getName());
+    QVector<OrderDB> clientOrdersDB = historyOrdersDB->clientOrdersDB(client->getName());
     if(clientOrdersDB.size() == 0){
         historyClientOrders = "No history orders";
         return historyClientOrders;
@@ -60,6 +60,12 @@ QString TradingFloor::getHistoryClintOrders(Client *client)
         historyClientOrders.append("\r");
     }
     return historyClientOrders;
+}
+
+void TradingFloor::deleteHistory() {
+    historyOrdersDB->deleteAll();
+    delete historyOrdersDB;
+    historyOrdersDB = new HistoryOrdersDB;
 }
 
 QString TradingFloor::getActiveOrders()
@@ -112,14 +118,20 @@ void TradingFloor::start()
                         maxBuyOrder->getUsd():minSellOrder->getUsd();
 
             int dealValue = 0;
+            for(int i =0;i<activeOrders.size();i++){
+                if(activeOrders[i] == maxBuyOrder || activeOrders[i] == minSellOrder){
+                    dealValue = minUsd*activeOrders[i]->getRub();
+                break;
+                }
+            }
+
             {   //update max buy order in activeOrders
                 auto it = std::find(activeOrders.begin(),activeOrders.end(),maxBuyOrder);
                 updatedOrder = *it;
                 (*it)->subtractUsd(minUsd);
-                dealValue = minUsd*(*it)->getRub();
                 (*it)->getClient()->addBalance(-dealValue);
                 if((*it)->getUsd() == 0){
-                    historyOrdersDB.insertOrder((*it));
+                    historyOrdersDB->insertOrder((*it));
                     delete (*it);
                     activeOrders.erase(it);
                 }
@@ -131,7 +143,7 @@ void TradingFloor::start()
                 (*it)->subtractUsd(minUsd);
                 (*it)->getClient()->addBalance(dealValue);
                 if((*it)->getUsd() == 0){
-                    historyOrdersDB.insertOrder((*it));
+                    historyOrdersDB->insertOrder((*it));
                     delete (*it);
                     activeOrders.erase(it);
                 }
